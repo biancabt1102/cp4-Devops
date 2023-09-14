@@ -16,7 +16,7 @@
 <body>
     <header th:replace="~{base :: header}"></header>
 
-    <div class="container py-3" style="margin-top: 60px;">
+    <div class="container py-3" style="margin-top: 60px; margin-bottom: 100px;">
         <div class="d-flex justify-content-between align-items-center">
 			<h2 class="fw-light text-uppercase pb-2"
 				th:text="|Endereços de ${cliente.name}|"></h2>
@@ -31,6 +31,7 @@
                     <th scope="col">Estado</th>
                     <th scope="col">CEP</th>
                     <th scope="col">Usuário</th>
+                    <th scope="col">Ação</th> <!-- Adicione a coluna de Ação -->
                 </tr>
             </thead>
             <tbody th:each="history: ${historico}">
@@ -41,10 +42,15 @@
                     <td th:text="${history.estado}"></td>
                     <td th:text="${history.cep}"></td>
                     <td th:text="${history.user.name}"></td>
+                    <!-- Adicione o botão de edição -->
+                    <td>
+                        <a th:href="@{'/endereco/edit/' + ${history.id}}" class="btn btn-warning">Editar</a>
+                        <a th:href="@{'/endereco/delete/' + ${history.id}}" class="btn btn-danger">Deletar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div >
 
     <footer th:replace="~{base :: footer}"></footer>
 </body>

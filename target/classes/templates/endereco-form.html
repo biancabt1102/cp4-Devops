@@ -12,7 +12,7 @@
 <body>
 <header th:replace="~{base :: header}"></header>
 
-<div class="container py-3" style="margin-top: 60px;">
+<div class="container py-3" style="margin-top: 60px; margin-bottom: 100px;">
     <h2 class="fw-light text-uppercase pb-2" th:text="|Novo Endereço de ${nomeUsuario}|"></h2>
     <form th:action="@{/endereco/new/__${userId}__}" method="post" th:object="${endereco}">
         <div class="mb-3">
@@ -24,7 +24,7 @@
         <div class="mb-3">
             <p class="alert alert-danger" th:errors="*{numero}"></p>
             <label for="numero" class="form-label">Número</label>
-            <input type="text" class="form-control" id="numero" name="numero" placeholder="Ex. 123"
+            <input type="number" class="form-control" id="numero" name="numero" placeholder="Ex. 123"
                    th:field="*{numero}">
         </div>
         <div class="mb-3">
@@ -42,12 +42,12 @@
         <div class="mb-3">
             <p class="alert alert-danger" th:errors="*{cep}"></p>
             <label for="cep" class="form-label">CEP</label>
-            <input type="text" class="form-control" id="cep" name="cep" placeholder="Ex. 12345-678"
+            <input type="number" class="form-control" id="cep" name="cep" placeholder="Ex. 12345-678"
                    th:field="*{cep}">
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-</div>
+</div >
 
 <footer th:replace="~{base :: footer}"></footer>
 

@@ -12,7 +12,7 @@
 <body>
 <header th:replace="~{base :: header}"></header>
 
-<div class="container py-3" style="margin-top: 60px;">
+<div class="container py-3" style="margin-top: 60px; margin-bottom: 100px;">
     <h2 class="fw-light text-uppercase pb-2">Novo Usuário</h2>
     <form action="/user" method="post" th:object="${user}">
         <div class="mb-3">
@@ -43,11 +43,11 @@
         <div class="mb-3">
             <p class="alert alert-danger" th:errors="*{telefone}"></p>
             <label for="telefone" class="form-label">Telefone</label>
-            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(00) 12345-6789" th:field="*{telefone}">
+            <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 12345-6789" th:field="*{telefone}">
         </div>
-        <button type="submit" class="btn btn-primary" style="margin-bottom: 100px;" >Enviar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
-</div>
+</div >
 
 <footer th:replace="~{base :: footer}"></footer>
 </body>

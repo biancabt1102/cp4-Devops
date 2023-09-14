@@ -76,4 +76,51 @@ public class EnderecoController {
 		model.addAttribute("historico", history);
 		return "redirect:/endereco/"+id;
 	}
+	
+	@GetMapping("/edit/{id}")
+	public ModelAndView edit(@PathVariable Long id) {
+		Optional<Endereco> endereco = repository.findById(id);
+		ModelAndView modelAndView = new ModelAndView("endereco-edit");
+		modelAndView.addObject("endereco", endereco.orElse(new Endereco()));
+		return modelAndView;
+	}
+
+	//Update
+	@PostMapping("/update/{id}")
+	public ModelAndView update(@PathVariable Long id, @Valid Endereco endereco, BindingResult result, Model model) {
+
+		Optional<User> user = userRepo.findById(endereco.getId());
+		
+		if (user.isEmpty()) {
+			return new ModelAndView("redirect:/endereco");
+		}
+	
+
+		if (result.hasErrors()) {
+			return new ModelAndView("endereco-edit", "endereco", endereco);
+		}
+
+		Endereco enderecoToUpdate = repository.findById(id).orElse(null);
+		if (enderecoToUpdate == null) {
+			return new ModelAndView("redirect:/endereco");
+		}
+
+		enderecoToUpdate.setRua(endereco.getRua());
+		enderecoToUpdate.setNumero(endereco.getNumero());
+		enderecoToUpdate.setCidade(endereco.getCidade());
+		enderecoToUpdate.setEstado(endereco.getEstado());
+		enderecoToUpdate.setCep(endereco.getCep());
+		enderecoToUpdate.setUser(user.get());
+
+		repository.save(enderecoToUpdate);
+
+		return new ModelAndView("redirect:/endereco");
+	}
+
+	//Delete
+	@GetMapping("/delete/{id}")
+	public ModelAndView delete(@PathVariable Long id) {
+    repository.deleteById(id);
+    return new ModelAndView("redirect:/endereco");
+}
 }

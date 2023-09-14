@@ -13,8 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.ToString;
@@ -29,12 +30,14 @@ public class User {
 	@Column(name = "cd_usuario")
 	private Long id;
 
-	@NotBlank(message = "Seu nome é obrigatório para realizar o cadastro.")
+	@NotBlank(message = "O nome do cliente é obrigatório para realizar o cadastro.")
+	@Size(min = 3, max = 50)
 	@Column(name = "nm_cliente")
 	private String name;
 
 	@NotBlank(message = "O CPF é obrigatório")
     @Column(name = "ds_cpf")
+	@Size(min = 11, max = 14)
     private String cpf;
 
     @NotBlank(message="O email é obrigatório")
@@ -42,14 +45,17 @@ public class User {
     private String email;
 
     @NotBlank(message = "A senha é obrigatória")
+	@Size(min = 8, max = 30)
     @Column(name = "ds_senha")
     private String senha;
 
     @NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "dt_nascimento")
-    private String data;
+    private LocalDate data;
     
     @NotBlank(message = "O telefone é obrigatório")
+	@Size(min = 10, max = 15)
     @Column(name = "nr_telefone")
     private String telefone;
 	

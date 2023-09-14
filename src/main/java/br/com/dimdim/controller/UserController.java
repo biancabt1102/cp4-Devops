@@ -1,6 +1,7 @@
 package br.com.dimdim.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,5 +58,45 @@ public class UserController {
         repository.save(user);
         return "redirect:/user"; // Redireciona para a lista de usuários
     }
+
+    // ... Outros métodos do controlador
+
+@GetMapping("/user/edit/{id}")
+public ModelAndView edit(@PathVariable Long id) {
+    Optional<User> user = repository.findById(id);
+    ModelAndView modelAndView = new ModelAndView("user-edit");
+    modelAndView.addObject("user", user.orElse(new User()));
+    return modelAndView;
+}
+
+@PostMapping("/user/update/{id}")
+public ModelAndView update(@PathVariable Long id, @Valid User user, BindingResult result, Model model) {
+    if (result.hasErrors()) {
+        return new ModelAndView("user-edit", "user", user);
+    }
+
+    User userToUpdate = repository.findById(id).orElse(null);
+    if (userToUpdate == null) {
+        return new ModelAndView("redirect:/user");
+    }
+
+    userToUpdate.setName(user.getName());
+    userToUpdate.setCpf(user.getCpf());
+    userToUpdate.setEmail(user.getEmail());
+    userToUpdate.setSenha(user.getSenha());
+    userToUpdate.setData(user.getData());
+    userToUpdate.setTelefone(user.getTelefone());
+
+    repository.save(userToUpdate);
+
+    return new ModelAndView("redirect:/user");
+}
+
+@GetMapping("/user/delete/{id}")
+public ModelAndView delete(@PathVariable Long id) {
+    repository.deleteById(id);
+    return new ModelAndView("redirect:/user");
+}
+
 
 }

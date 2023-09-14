@@ -12,7 +12,7 @@
 <body>
     <header th:replace="~{base :: header}"></header>
 
-    <div class="container py-3" style="margin-top: 60px;">
+    <div class="container py-3" style="margin-top: 60px; margin-bottom: 100px;">
         <div class="d-flex justify-content-between align-items-center">        
             <h2 class="fw-light text-uppercase pb-2">Lista de Usuário</h2>
             <a href="/user/new" class="btn btn-info"><i class="bi bi-person-plus-fill"></i> Criar Usuário</a>
@@ -27,7 +27,7 @@
                     <th scope="col">Data de Nascimento</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Endereço</th>
-                    <th scope="col"></th>
+                    <th scope="col">Ação</th> <!-- Adicione a coluna de Ação -->
                 </tr>
             </thead>
             <tbody th:each="user: ${usuarios}">
@@ -39,10 +39,16 @@
                     <td th:text="${user.data}"></td>
                     <td th:text="${user.telefone}"></td>
                     <td><a th:href="@{/endereco/{id}(id=${user.id})}" class="btn btn-primary">Endereços</a></td>
+                    <td>
+                        <a th:href="@{/user/edit/{id}(id=${user.id})}" class="btn btn-warning">Editar</a> <!-- Botão de Edição -->
+                        <a th:href="@{/user/delete/{id}(id=${user.id})}" class="btn btn-danger">Deletar</a>
+
+
+                    </td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div >
 
     <footer th:replace="~{base :: footer}"></footer>
 </body>
