@@ -1,5 +1,5 @@
 # Projeto de Cadastro de Clientes e Endereços - DimDim
-
+ 
 Este é um projeto de cadastro de clientes e endereços desenvolvido para a empresa DimDim. Ele permite que a empresa gerencie os dados pessoais dos clientes, bem como os endereços cadastrados por eles.
 
 ## Funcionalidades
