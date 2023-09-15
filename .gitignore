@@ -1,0 +1,48 @@
+# Arquivos temporários
+*~
+*.swp
+*.swo
+*.log
+.DS_Store
+Thumbs.db
+
+# Diretórios específicos
+node_modules/
+dist/
+out/
+.env
+
+# Configurações do Visual Studio Code (VSCode)
+.vscode/
+
+# Arquivos de build/compilação
+*.o
+*.ko
+*.a
+*.lo
+*.la
+*.so
+*.dll
+*.exe
+*.out
+*.app
+
+# Pacotes e módulos gerados
+npm-debug.log
+yarn-error.log
+yarn.lock
+.pnpm-debug.log
+
+# Dependências de gerenciadores de pacotes
+package-lock.json
+shrinkwrap.yaml
+yarn.lock
+
+# Dependências do Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist/
+build/
