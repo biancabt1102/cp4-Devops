@@ -1,0 +1,7 @@
+br\com\dimdim\repository\EnderecoRepository.class
+br\com\dimdim\repository\UserRepository.class
+br\com\dimdim\model\User.class
+br\com\dimdim\controller\EnderecoController.class
+br\com\dimdim\model\Endereco.class
+br\com\dimdim\DimdimApplication.class
+br\com\dimdim\controller\UserController.class
