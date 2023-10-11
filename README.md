@@ -28,16 +28,18 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 ## Configuração do Banco de Dados
 
-Para configurar o banco de dados Oracle, edite o arquivo `application.properties` com as informações de conexão:
+Para configurar o banco de dados Microsoft SQLServer, edite o arquivo `application.properties` com as informações de conexão:
 
 ```
-spring.datasource.url=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+spring.datasource.url=url
 spring.datasource.username=username
 spring.datasource.password=password
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.jpa.hibernate.ddl-auto=update
 ```
+<p style="color:red;font-size:20px;font-weight:600;">Dica!!</p>
 
+Para colocar a url, logo após de criar o Banco de Dados na Azure e acessar o banco "dimdimdb" você vai em "Cadeia de conexão" seleciona a opção "JDBC" e copie o endereço que ele está dando. Após isso, cole o endereço na `spring.datasource.url`, altere também o `password` que está dentro da URL.
 
 Certifique-se de substituir `username` e `password` pelas credenciais adequadas do seu banco de dados.
 
