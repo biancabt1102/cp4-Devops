@@ -37,7 +37,7 @@ spring.datasource.password=password
 spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.jpa.hibernate.ddl-auto=update
 ```
-<p style="color:red;font-size:20px;font-weight:600;">Dica!!</p>
+## Dica!!
 
 Para colocar a url, logo após de criar o Banco de Dados na Azure e acessar o banco "dimdimdb" você vai em "Cadeia de conexão" seleciona a opção "JDBC" e copie o endereço que ele está dando. Após isso, cole o endereço na `spring.datasource.url`, altere também o `password` que está dentro da URL.
 
